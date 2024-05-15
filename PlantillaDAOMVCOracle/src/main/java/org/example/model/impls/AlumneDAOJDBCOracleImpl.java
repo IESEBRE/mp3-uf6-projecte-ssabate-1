@@ -92,6 +92,22 @@ public class AlumneDAOJDBCOracleImpl implements DAO<Alumne> {
 
     @Override
     public void save(Alumne obj) throws DAOException {
+        String insertSQL = "INSERT INTO ALUMNES (id,nom,pes,matriculat) VALUES (?, ?, ?, ?)";
 
+        try (Connection con = DriverManager.getConnection(
+                "jdbc:oracle:thin:@//localhost:1521/xe",
+                "C##HR",
+                "HR"
+        );
+             PreparedStatement st = con.prepareStatement(insertSQL)
+        ) {
+            st.setLong(1, obj.getId());
+            st.setString(2, obj.getNom());
+            st.setDouble(3, obj.getPes());
+            st.setString(4, "t");
+            st.executeUpdate();
+        } catch (SQLException throwables) {
+            throw new DAOException(1);
+        }
     }
 }

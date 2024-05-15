@@ -127,12 +127,15 @@ public class Controller implements PropertyChangeListener { //1. Implementació 
                                     campNom.setSelectionEnd(campNom.getText().length());
                                     campPes.setText("75");
                                     campNom.requestFocus();         //intentem que el foco vaigue al camp del nom
+                                    dadesAlumnes.save(al);
                                 } catch (ParseException ex) {
                                     setExcepcio(new DAOException(3));
 //                                    JOptionPane.showMessageDialog(null, "Has d'introduir un pes correcte (>=1 i <=800!!");
                                     campPes.setSelectionStart(0);
                                     campPes.setSelectionEnd(campPes.getText().length());
                                     campPes.requestFocus();
+                                } catch (DAOException ex) {
+                                    throw new RuntimeException(ex);
                                 }
                             }
                         } else {         //Si estem a la pestanya de la matricula
