@@ -6,7 +6,7 @@ import java.util.TreeSet;
 
 public class Alumne {
 
-    private Long id;
+    private Long id=0L;
     private String nom;
     private double pes;
     private boolean matriculat;
@@ -51,6 +51,10 @@ public class Alumne {
 
     public String getNom() {
         return nom;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public void setNom(String nom) {
